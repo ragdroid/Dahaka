@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Dahaka</string>
+    <string name="title_activity_login">Login</string>
+    <string name="submit">SUBMIT</string>
+    <string name="login_username_hint">UserName or UserId</string>
+</resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.ragdroid.dahaka.activity.login.LoginModel"/>
+
+        <variable
+            name="presenter"
+            type="com.ragdroid.dahaka.activity.login.LoginContract.Presenter"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.ragdroid.dahaka.activity.login.LoginActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:title="@string/title_activity_login"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:padding="@dimen/keyline_1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.ragdroid.dahaka.activity.login.LoginActivity"
+            tools:showIn="@layout/activity_login">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/login_input"
+                    android:textSize="@dimen/text_large"
+                    android:hint="@string/login_username_hint"
+                    android:text="@={model.userName}"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_marginTop="@dimen/keyline_1"
+                android:id="@+id/submit_button"
+                android:text="@string/submit"
+                android:onClick="@{() -> presenter.onSubmitClicked(model)}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/min_button_height"/>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,26 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <dimen name="two_dp">2dp</dimen>
+    <dimen name="one_dp">1dp</dimen>
+
+    <dimen name="keyline_1">16dp</dimen>
+    <dimen name="keyline_1_minus_8dp">8dp</dimen>
+    <dimen name="keyline_2">72dp</dimen>
+    <dimen name="keyline_2_minus_8dp">64dp</dimen>
+    <dimen name="keyline_2_minus_16dp">56dp</dimen>
+    <dimen name="keyline_2_minus_32dp">40dp</dimen>
+    <dimen name="keyline_2_minus_48dp">24dp</dimen>
+
+    <dimen name="text_medium">20sp</dimen>
+    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_xlarge">28sp</dimen>
+    <dimen name="space_medium">32dp</dimen>
+    <dimen name="space_large">64dp</dimen>
+    <dimen name="space_xlarge">128dp</dimen>
+    <dimen name="space_xxlarge">256dp</dimen>
+    <dimen name="space_xlarge_plus_buffer">160dp</dimen>
+    <dimen name="min_button_height">48dp</dimen>
+
+</resources>
