@@ -12,6 +12,28 @@ import com.ragdroid.dahaka.BR;
 public class LoginModel extends BaseObservable {
 
     private String userName;
+    private boolean submitEnabled = true;
+    private boolean loading;
+
+    @Bindable
+    public boolean isSubmitEnabled() {
+        return submitEnabled;
+    }
+
+    public void setSubmitEnabled(boolean submitEnabled) {
+        this.submitEnabled = submitEnabled;
+        notifyPropertyChanged(BR.submitEnabled);
+    }
+
+    @Bindable
+    public boolean isLoading() {
+        return loading;
+    }
+
+    public void setLoading(boolean loading) {
+        this.loading = loading;
+        notifyPropertyChanged(BR.loading);
+    }
 
     @Bindable
     public String getUserName() {

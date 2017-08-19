@@ -18,6 +18,7 @@
                 />
 
             <android.support.design.widget.BottomNavigationView
+                android:background="@color/background"
                 app:elevation="@dimen/space_medium"
                 android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"

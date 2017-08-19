@@ -1,5 +1,6 @@
 package com.ragdroid.dahaka.activity.items;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.ragdroid.dahaka.activity.items.list.ItemsAdapter;
@@ -26,6 +27,11 @@ public class ItemsModule {
     @Provides
     public LinearLayoutManager provideLayoutManager(ItemsActivity activity) {
         return new LinearLayoutManager(activity);
+    }
+
+    @Provides
+    public DividerItemDecoration provideDividerItemDecoration(ItemsActivity activity) {
+        return new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
     }
 
 }

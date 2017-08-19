@@ -1,7 +1,9 @@
 package com.ragdroid.dahaka.util;
 
 import android.content.Context;
+import android.databinding.BindingConversion;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -80,4 +82,10 @@ public class BindingAdapter {
     public void formatInt(TextView textView, String stringFormat, int variable) {
         textView.setText(String.format(stringFormat, variable));
     }
+
+    @BindingConversion
+    public static int convertBooleanToVisibility(boolean visible) {
+        return visible ? View.VISIBLE : View.GONE;
+    }
+
 }

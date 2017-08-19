@@ -27,5 +27,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="profile_image_edge">300dp</dimen>
     <dimen name="list_item_height">80dp</dimen>
+    <dimen name="progress_edge">40dp</dimen>
 
 </resources>

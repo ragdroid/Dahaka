@@ -26,7 +26,7 @@ public class ItemsPresenter extends BasePresenterImpl<ItemsContract.View> implem
         ItemsModel model = new ItemsModel();
         model.items = new ArrayList<>();
         for (Pokemon.HeldItem item : pokemon.getHeldItems()) {
-            model.items.add("Name : " + item.getItem().getName() + "\n");
+            model.items.add("Item : " + item.getItem().getName() + "\n");
         }
         if (model.items.size() == 0) {
             model.items.add("No Held Items :(");

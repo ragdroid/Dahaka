@@ -3,6 +3,7 @@ package com.ragdroid.dahaka.activity.items;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 
@@ -23,6 +24,7 @@ public class ItemsActivity extends BaseUserActivity<ItemsContract.Presenter> imp
     private ItemsComponent itemsComponent;
     @Inject ItemsAdapter adapter;
     @Inject LinearLayoutManager linearLayoutManager;
+    @Inject DividerItemDecoration dividerItemDecoration;
     private ActivityItemsBinding binding;
 
     @Override
@@ -46,6 +48,7 @@ public class ItemsActivity extends BaseUserActivity<ItemsContract.Presenter> imp
     @Override
     public void showModel(ItemsModel model) {
         binding.itemsRecyclerView.setAdapter(adapter);
+        binding.itemsRecyclerView.addItemDecoration(dividerItemDecoration);
         binding.itemsRecyclerView.setLayoutManager(linearLayoutManager);
         adapter.updateList(model.items);
     }

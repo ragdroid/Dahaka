@@ -22,6 +22,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         super.onCreate(savedInstanceState);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.title_activity_login);
         binding.setPresenter(getPresenter());
     }
 

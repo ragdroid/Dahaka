@@ -10,6 +10,7 @@ import com.ragdroid.dahaka.util.TextUtil;
 import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -40,21 +41,21 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
             getView().showMessage("Please enter username or id");
             return;
         }
-        Disposable disposable = userManager.loginWithUserName(loginModel.getUserName())
+        loginModel.setSubmitEnabled(false);
+        loginModel.setLoading(true);
+        Disposable disposable = userManager.loginWithUserName(loginModel.getUserName().toLowerCase())
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribe(new Consumer<Pokemon>() {
-                    @Override
-                    public void accept(Pokemon pokemon) throws Exception {
-                        getView().showMessage("Login Successful");
-                        getView().showHome();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        throwable.printStackTrace();
-                        getView().showMessage(throwable.getMessage());
-                    }
+                .doFinally(() -> {
+                    loginModel.setSubmitEnabled(true);
+                    loginModel.setLoading(false);
+                })
+                .subscribe(pokemon -> {
+                    getView().showMessage("Login Successful");
+                    getView().showHome();
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    getView().showMessage(throwable.getMessage());
                 });
         compositeDisposable.add(disposable);
 

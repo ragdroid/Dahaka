@@ -8,15 +8,21 @@
     </data>
 
     <LinearLayout
+        android:paddingLeft="@dimen/keyline_1"
+        android:paddingRight="@dimen/keyline_1"
+        android:background="@color/divider"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/list_item_height">
 
         <TextView
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primary"
             android:text="@{move}"
+            android:gravity="center_vertical"
             android:id="@+id/held_item_name"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/list_item_height"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 </layout>

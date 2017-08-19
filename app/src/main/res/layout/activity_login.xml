@@ -59,14 +59,21 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:enabled="@{model.submitEnabled}"
                 android:layout_marginTop="@dimen/keyline_1"
                 android:id="@+id/submit_button"
                 android:text="@string/submit"
                 android:onClick="@{() -> presenter.onSubmitClicked()}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/min_button_height"/>
-
+            <ProgressBar
+                android:layout_marginTop="@dimen/space_medium"
+                android:layout_width="@dimen/progress_edge"
+                android:layout_height="@dimen/progress_edge"
+                android:visibility="@{model.loading}"
+                />
         </LinearLayout>
+
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>
