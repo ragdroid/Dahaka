@@ -1,4 +1,4 @@
-package com.ragdroid.dahaka.activity.login;
+package com.ragdroid.dahaka.activity.home.profile;
 
 import com.ragdroid.dahaka.mvp.BasePresenter;
 import com.ragdroid.dahaka.mvp.BaseView;
@@ -7,14 +7,15 @@ import com.ragdroid.dahaka.mvp.BaseView;
  * Created by garimajain on 13/08/17.
  */
 
-public interface LoginContract {
+public interface ProfileContract {
 
     interface View extends BaseView {
 
+        void showModel(ProfileModel model);
     }
 
-    interface Presenter extends BasePresenter {
-        void onSubmitClicked(LoginModel loginModel);
+    interface Presenter extends BasePresenter<View> {
+
     }
 
 }

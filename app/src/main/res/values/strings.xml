@@ -3,4 +3,21 @@
     <string name="title_activity_login">Login</string>
     <string name="submit">SUBMIT</string>
     <string name="login_username_hint">UserName or UserId</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_stats">Stats</string>
+    <string name="menu_moves">Moves</string>
+
+
+    <string name="pokemon_name_format">Name : %s</string>
+    <string name="pokemon_weight_format">Weight : %d</string>
+    <string name="pokemon_height_format">Height : %d</string>
+    <string name="pokemon_exp_format">Experience : %d</string>
+    <string name="session_expired">Session Expired Login Again</string>
+    <string name="log_out">Log Out</string>
+    <string name="title_items">Inventory</string>
+
 </resources>

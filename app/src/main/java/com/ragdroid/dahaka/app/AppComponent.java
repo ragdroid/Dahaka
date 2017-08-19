@@ -1,6 +1,7 @@
 package com.ragdroid.dahaka.app;
 
 import android.app.Application;
+import android.databinding.DataBindingComponent;
 
 import com.ragdroid.dahaka.activity.login.LoginComponent;
 import com.ragdroid.dahaka.api.ApiModule;
@@ -16,11 +17,13 @@ import dagger.Component;
  */
 @Singleton
 @Component(modules = {AppModule.class, ApiModule.class})
-public interface AppComponent {
+public interface AppComponent extends DataBindingComponent {
 
 
     LoginComponent.Builder loginBuilder();
     UserComponent.Builder userBuilder();
+
+    UserManager getUserManager();
 
     @Component.Builder
     interface Builder {

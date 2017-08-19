@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="move"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@{move}"
+            android:id="@+id/held_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"/>
+
+    </LinearLayout>
+</layout>

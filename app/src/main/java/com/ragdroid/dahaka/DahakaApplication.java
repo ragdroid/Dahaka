@@ -1,8 +1,8 @@
 package com.ragdroid.dahaka;
 
 import android.app.Application;
+import android.databinding.DataBindingUtil;
 
-import com.ragdroid.dahaka.activity.login.LoginComponent;
 import com.ragdroid.dahaka.app.AppComponent;
 import com.ragdroid.dahaka.app.DaggerAppComponent;
 
@@ -18,6 +18,7 @@ public class DahakaApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appComponent = DaggerAppComponent.builder().application(this).build();
+        DataBindingUtil.setDefaultComponent(appComponent);
     }
 
     public AppComponent getAppComponent() {

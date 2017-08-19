@@ -11,10 +11,13 @@ public interface LoginContract {
 
     interface View extends BaseView {
 
+        void showHome();
+
+        void setModel(LoginModel loginModel);
     }
 
-    interface Presenter extends BasePresenter {
-        void onSubmitClicked(LoginModel loginModel);
+    interface Presenter extends BasePresenter<View> {
+        void onSubmitClicked();
     }
 
 }

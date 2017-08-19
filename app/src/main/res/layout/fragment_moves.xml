@@ -5,17 +5,24 @@
 
         <variable
             name="model"
-            type="com.ragdroid.dahaka.activity.home.stats.StatsModel"/>
+            type="com.ragdroid.dahaka.activity.home.moves.MovesModel"/>
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:padding="@dimen/keyline_1"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:text="@{model.name}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            <TextView
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="@{model.moves}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
 </layout>

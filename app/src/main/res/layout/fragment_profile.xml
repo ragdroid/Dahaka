@@ -1,7 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <data>
+
+        <variable
+            name="model"
+            type="com.ragdroid.dahaka.activity.home.profile.ProfileModel"/>
+    </data>
+
+    <LinearLayout
+        android:padding="@dimen/keyline_1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/profile_image_edge"
+            android:layout_height="@dimen/profile_image_edge"
+            bind:src="@{model.imageUrl}"
+            bind:cropCircle="@{true}"/>
+
+        <TextView
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:formatString="@{@string/pokemon_name_format}"
+            bind:variable="@{model.name}"/>
+
+        <TextView
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:formatInt="@{@string/pokemon_weight_format}"
+            bind:variable="@{model.weight}"/>
+
+        <TextView
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:formatInt="@{@string/pokemon_height_format}"
+            bind:variable="@{model.height}"/>
+
+        <TextView
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:formatInt="@{@string/pokemon_exp_format}"
+            bind:variable="@{model.experience}"/>
+    </LinearLayout>
+</layout>

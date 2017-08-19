@@ -24,5 +24,6 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
     @Override
     public void onViewRemoved() {
         compositeDisposable.clear();
+        view = null;
     }
 }

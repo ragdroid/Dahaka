@@ -5,5 +5,9 @@ package com.ragdroid.dahaka.mvp;
  */
 
 public interface BaseView {
+
     void showMessage(String message);
+
+    void finishView();
+
 }

@@ -1,9 +1,14 @@
 package com.ragdroid.dahaka.mvp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import com.ragdroid.dahaka.DahakaApplication;
+import com.ragdroid.dahaka.activity.login.LoginActivity;
+import com.ragdroid.dahaka.app.AppComponent;
 
 import javax.inject.Inject;
 
@@ -23,7 +28,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDagger();
+        initDagger(((DahakaApplication) getApplication()).getAppComponent());
         presenter.onViewAdded(this);
     }
 
@@ -38,5 +43,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onDestroy();
     }
 
-    protected abstract void initDagger();
+    @Override
+    public void finishView() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    protected abstract void initDagger(AppComponent appComponent);
 }

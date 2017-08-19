@@ -53,7 +53,7 @@
                     android:textSize="@dimen/text_large"
                     android:hint="@string/login_username_hint"
                     android:text="@={model.userName}"
-                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </android.support.design.widget.TextInputLayout>
@@ -62,7 +62,7 @@
                 android:layout_marginTop="@dimen/keyline_1"
                 android:id="@+id/submit_button"
                 android:text="@string/submit"
-                android:onClick="@{() -> presenter.onSubmitClicked(model)}"
+                android:onClick="@{() -> presenter.onSubmitClicked()}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/min_button_height"/>
 

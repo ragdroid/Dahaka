@@ -5,8 +5,6 @@ import com.ragdroid.dahaka.api.entity.Pokemon;
 import com.ragdroid.dahaka.user.PokemonService;
 import com.ragdroid.dahaka.user.UserComponent;
 
-import java.util.HashMap;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -23,7 +21,12 @@ public class UserManager {
     private final PokemonService service;
     private final UserComponent.Builder userComponentBuilder;
 
-    HashMap<String, Pokemon> pokemonCache = new HashMap<>();
+    private Pokemon pokemonCache;
+
+    public UserComponent getUserComponent() {
+        return userComponent;
+    }
+
     private UserComponent userComponent;
 
     @Inject
@@ -33,7 +36,7 @@ public class UserManager {
     }
 
     public Flowable<Pokemon> loginWithUserName(String userName) {
-        return getPokemonFromCache(userName)
+        return getPokemonMaybeFromCache()
                 .concatWith(service.getPokemon(userName).toMaybe())
                 .take(1)
                 .doOnNext(new Consumer<Pokemon>() {
@@ -51,9 +54,9 @@ public class UserManager {
     }
 
 
-    private Maybe<Pokemon> getPokemonFromCache(String userName) {
-        if (pokemonCache.containsKey(userName)) {
-            return Maybe.just(pokemonCache.get(userName));
+    private Maybe<Pokemon> getPokemonMaybeFromCache() {
+        if (pokemonCache != null) {
+            return Maybe.just(pokemonCache);
         } else {
             return Maybe.empty();
         }
@@ -64,6 +67,7 @@ public class UserManager {
     }
 
     public void logOut() {
+        pokemonCache = null;
         userComponent = null;
     }
 
