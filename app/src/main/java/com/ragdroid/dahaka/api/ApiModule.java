@@ -6,9 +6,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ragdroid.dahaka.user.PokemonService;
-import com.ragdroid.dahaka.user.UserScope;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;

@@ -1,9 +1,9 @@
 package com.ragdroid.dahaka.app;
 
 import android.app.Application;
-import android.databinding.DataBindingComponent;
 
-import com.ragdroid.dahaka.activity.login.LoginComponent;
+import com.ragdroid.dahaka.DahakaApplication;
+import com.ragdroid.dahaka.activity.AppBindingModule;
 import com.ragdroid.dahaka.api.ApiModule;
 import com.ragdroid.dahaka.user.UserComponent;
 
@@ -11,19 +11,27 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * Created by garimajain on 13/08/17.
  */
 @Singleton
-@Component(modules = {AppModule.class, ApiModule.class})
-public interface AppComponent extends DataBindingComponent {
+@Component(modules = {
+        AppModule.class,
+        ApiModule.class,
+        AppBindingModule.class,
+        AndroidSupportInjectionModule.class})
+public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
 
-    LoginComponent.Builder loginBuilder();
     UserComponent.Builder userBuilder();
 
     UserManager getUserManager();
+
+    void inject(DahakaApplication instance);
 
     @Component.Builder
     interface Builder {

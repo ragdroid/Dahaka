@@ -12,11 +12,18 @@ import com.ragdroid.dahaka.activity.home.HomeActivity;
 import com.ragdroid.dahaka.databinding.FragmentProfileBinding;
 import com.ragdroid.dahaka.mvp.BaseFragment;
 
+import javax.inject.Inject;
+
 /**
  * Created by garimajain on 16/08/17.
  */
 
 public class ProfileFragment extends BaseFragment<ProfileContract.Presenter> implements ProfileContract.View {
+
+    @Inject
+    public ProfileFragment() {
+        // Required empty public constructor for Injection
+    }
 
     private FragmentProfileBinding dataBinding;
 
@@ -27,11 +34,6 @@ public class ProfileFragment extends BaseFragment<ProfileContract.Presenter> imp
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         dataBinding = DataBindingUtil.bind(view);
         return view;
-    }
-
-    @Override
-    protected void initDagger() {
-        ((HomeActivity) getActivity()).getHomeComponent().inject(this);
     }
 
     @Override

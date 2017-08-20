@@ -3,7 +3,7 @@ package com.ragdroid.dahaka.user;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.ragdroid.dahaka.app.AppComponent;
+import com.ragdroid.dahaka.DahakaApplication;
 import com.ragdroid.dahaka.app.UserManager;
 import com.ragdroid.dahaka.mvp.BaseActivity;
 import com.ragdroid.dahaka.mvp.BasePresenter;
@@ -26,9 +26,10 @@ public abstract class BaseUserActivity<T extends BasePresenter> extends BaseActi
     }
 
     @Override
-    protected void initDagger(AppComponent appComponent) {
-        userManager = appComponent.getUserManager();
-        inject(userManager.getUserComponent());
+    protected void androidInject() {
+        userManager = ((DahakaApplication)getApplication())
+                .getAppComponent().getUserManager();
+        UserInjection.inject(this, userManager);
     }
 
     protected void logoutUser() {
@@ -36,5 +37,5 @@ public abstract class BaseUserActivity<T extends BasePresenter> extends BaseActi
         finishView();
     }
 
-    protected abstract void inject(UserComponent userComponent);
+
 }

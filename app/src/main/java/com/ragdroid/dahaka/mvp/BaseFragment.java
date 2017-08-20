@@ -3,7 +3,6 @@ package com.ragdroid.dahaka.mvp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.ragdroid.dahaka.R;
@@ -11,11 +10,13 @@ import com.ragdroid.dahaka.activity.login.LoginActivity;
 
 import javax.inject.Inject;
 
+import dagger.android.support.DaggerFragment;
+
 /**
  * Created by garimajain on 13/08/17.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends BasePresenter> extends DaggerFragment implements BaseView {
 
     public T getPresenter() {
         return presenter;
@@ -28,7 +29,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initDagger();
         presenter.onViewAdded(this);
     }
 
@@ -50,5 +50,4 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         getActivity().finish();
     }
 
-    protected abstract void initDagger();
 }

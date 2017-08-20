@@ -16,17 +16,15 @@ import com.ragdroid.dahaka.activity.home.stats.StatsFragment;
 import com.ragdroid.dahaka.activity.items.ItemsActivity;
 import com.ragdroid.dahaka.databinding.ActivityHomeBinding;
 import com.ragdroid.dahaka.user.BaseUserActivity;
-import com.ragdroid.dahaka.user.UserComponent;
+
+import javax.inject.Inject;
 
 public class HomeActivity extends BaseUserActivity<HomeContract.Presenter> {
 
 
-
-    private HomeComponent homeComponent;
-
-    public HomeComponent getHomeComponent() {
-        return homeComponent;
-    }
+    @Inject ProfileFragment profileFragment;
+    @Inject StatsFragment statsFragment;
+    @Inject MovesFragment movesFragment;
 
     private ActivityHomeBinding viewDataBinding;
 
@@ -49,13 +47,13 @@ public class HomeActivity extends BaseUserActivity<HomeContract.Presenter> {
         Fragment fragment = null;
         switch (itemId) {
             case R.id.action_profile:
-                fragment = new ProfileFragment();
+                fragment = profileFragment;
                 break;
             case R.id.action_moves:
-                fragment = new MovesFragment();
+                fragment = movesFragment;
                 break;
             case R.id.action_stats:
-                fragment = new StatsFragment();
+                fragment = statsFragment;
                 break;
         }
 
@@ -101,13 +99,5 @@ public class HomeActivity extends BaseUserActivity<HomeContract.Presenter> {
         startActivity(intent);
     }
 
-
-    @Override
-    protected void inject(UserComponent userComponent) {
-        homeComponent = userComponent.homeComponentBuilder()
-                .activity(this)
-                .build();
-        homeComponent.inject(this);
-    }
 
 }

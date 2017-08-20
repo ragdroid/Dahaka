@@ -7,13 +7,11 @@ import android.support.v7.widget.Toolbar;
 
 import com.ragdroid.dahaka.R;
 import com.ragdroid.dahaka.activity.home.HomeActivity;
-import com.ragdroid.dahaka.app.AppComponent;
 import com.ragdroid.dahaka.databinding.ActivityLoginBinding;
 import com.ragdroid.dahaka.mvp.BaseActivity;
 
 public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
 
-    private LoginComponent loginComponent;
     private ActivityLoginBinding binding;
 
     @Override
@@ -24,15 +22,6 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.title_activity_login);
         binding.setPresenter(getPresenter());
-    }
-
-    @Override
-    protected void initDagger(AppComponent appComponent) {
-        loginComponent = appComponent
-                .loginBuilder()
-                .loginActivity(this)
-                .build();
-        loginComponent.inject(this);
     }
 
     @Override

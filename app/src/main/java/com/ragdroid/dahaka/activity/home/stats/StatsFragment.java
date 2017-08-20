@@ -14,6 +14,8 @@ import com.ragdroid.dahaka.databinding.FragmentStatsBinding;
 import com.ragdroid.dahaka.mvp.BaseFragment;
 import com.ragdroid.dahaka.user.BaseUserActivity;
 
+import javax.inject.Inject;
+
 /**
  * Created by garimajain on 16/08/17.
  */
@@ -22,6 +24,11 @@ public class StatsFragment extends BaseFragment<StatsContract.Presenter> impleme
 
     private FragmentStatsBinding dataBinding;
 
+    @Inject
+    public StatsFragment() {
+        //required empty public constructor
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,11 +36,6 @@ public class StatsFragment extends BaseFragment<StatsContract.Presenter> impleme
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
         dataBinding = DataBindingUtil.bind(view);
         return view;
-    }
-
-    @Override
-    protected void initDagger() {
-        ((HomeActivity) getActivity()).getHomeComponent().inject(this);
     }
 
     @Override

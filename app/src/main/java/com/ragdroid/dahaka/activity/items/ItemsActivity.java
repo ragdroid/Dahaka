@@ -11,7 +11,6 @@ import com.ragdroid.dahaka.R;
 import com.ragdroid.dahaka.activity.items.list.ItemsAdapter;
 import com.ragdroid.dahaka.databinding.ActivityItemsBinding;
 import com.ragdroid.dahaka.user.BaseUserActivity;
-import com.ragdroid.dahaka.user.UserComponent;
 
 import javax.inject.Inject;
 
@@ -21,19 +20,11 @@ import javax.inject.Inject;
 
 public class ItemsActivity extends BaseUserActivity<ItemsContract.Presenter> implements ItemsContract.View {
 
-    private ItemsComponent itemsComponent;
     @Inject ItemsAdapter adapter;
     @Inject LinearLayoutManager linearLayoutManager;
     @Inject DividerItemDecoration dividerItemDecoration;
     private ActivityItemsBinding binding;
 
-    @Override
-    protected void inject(UserComponent userComponent) {
-        itemsComponent = userComponent.itemsComponentBuilder()
-                .activity(this)
-                .build();
-        itemsComponent.inject(this);
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
