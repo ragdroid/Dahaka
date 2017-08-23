@@ -21,7 +21,6 @@ public interface AppComponent extends DataBindingComponent {
 
 
     LoginComponent.Builder loginBuilder();
-    UserComponent.Builder userBuilder();
 
     UserManager getUserManager();
 

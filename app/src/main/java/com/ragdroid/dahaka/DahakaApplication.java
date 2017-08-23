@@ -12,16 +12,26 @@ import com.ragdroid.dahaka.app.DaggerAppComponent;
 
 public class DahakaApplication extends Application {
 
-    private AppComponent appComponent;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        appComponent = DaggerAppComponent.builder().application(this).build();
-        DataBindingUtil.setDefaultComponent(appComponent);
+    static DahakaApplication app;
+
+    public static DahakaApplication getApp() {
+        return app;
     }
+
+    private AppComponent appComponent;
 
     public AppComponent getAppComponent() {
         return appComponent;
     }
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        app = this;
+        appComponent = DaggerAppComponent.builder().application(this).build();
+        DataBindingUtil.setDefaultComponent(appComponent);
+    }
+
 }

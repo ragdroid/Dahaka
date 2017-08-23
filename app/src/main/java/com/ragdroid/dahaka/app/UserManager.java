@@ -1,7 +1,9 @@
 package com.ragdroid.dahaka.app;
 
 
+import com.ragdroid.dahaka.DahakaApplication;
 import com.ragdroid.dahaka.api.entity.Pokemon;
+import com.ragdroid.dahaka.user.DaggerUserComponent;
 import com.ragdroid.dahaka.user.PokemonService;
 import com.ragdroid.dahaka.user.UserComponent;
 
@@ -19,7 +21,6 @@ import io.reactivex.functions.Consumer;
 public class UserManager {
 
     private final PokemonService service;
-    private final UserComponent.Builder userComponentBuilder;
 
     private Pokemon pokemonCache;
 
@@ -30,25 +31,20 @@ public class UserManager {
     private UserComponent userComponent;
 
     @Inject
-    public UserManager(PokemonService service, UserComponent.Builder builder) {
+    public UserManager(PokemonService service) {
         this.service = service;
-        this.userComponentBuilder = builder;
     }
 
     public Flowable<Pokemon> loginWithUserName(String userName) {
         return getPokemonMaybeFromCache()
                 .concatWith(service.getPokemon(userName).toMaybe())
                 .take(1)
-                .doOnNext(new Consumer<Pokemon>() {
-                    @Override
-                    public void accept(Pokemon pokemon) throws Exception {
-                        createUserSession(pokemon);
-                    }
-                });
+                .doOnNext(pokemon -> createUserSession(pokemon));
     }
 
     private void createUserSession(Pokemon pokemon) {
-        userComponent = userComponentBuilder
+        userComponent = DaggerUserComponent.builder()
+                .appComponent(DahakaApplication.getApp().getAppComponent())
                 .pokeMon(pokemon)
                 .build();
     }
