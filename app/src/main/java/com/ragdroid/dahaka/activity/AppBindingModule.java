@@ -10,7 +10,7 @@ import dagger.android.ContributesAndroidInjector;
 /**
  * Created by garimajain on 20/08/17.
  */
-@Module(subcomponents = UserComponent.class)
+@Module
 public abstract class AppBindingModule {
 
     @ContributesAndroidInjector(modules = LoginModule.class)

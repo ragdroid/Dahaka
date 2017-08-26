@@ -6,6 +6,7 @@ import com.ragdroid.dahaka.DahakaApplication;
 import com.ragdroid.dahaka.activity.AppBindingModule;
 import com.ragdroid.dahaka.api.ApiModule;
 import com.ragdroid.dahaka.user.UserComponent;
+import com.ragdroid.dahaka.util.BaseSchedulerProvider;
 
 import javax.inject.Singleton;
 
@@ -27,9 +28,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
 
-    UserComponent.Builder userBuilder();
-
     UserManager getUserManager();
+
+    BaseSchedulerProvider schedulerProvider();
 
     void inject(DahakaApplication instance);
 

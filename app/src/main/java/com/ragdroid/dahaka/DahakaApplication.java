@@ -22,6 +22,12 @@ public class DahakaApplication extends Application implements HasActivityInjecto
 
     @Inject DispatchingAndroidInjector<Activity> activityInjector;
 
+    public static DahakaApplication getApp() {
+        return app;
+    }
+
+    private static DahakaApplication app;
+
     public AppComponent getAppComponent() {
         return appComponent;
     }
@@ -31,6 +37,7 @@ public class DahakaApplication extends Application implements HasActivityInjecto
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         DataBindingUtil.setDefaultComponent(buildDataBindingComponent());
         appComponent = DaggerAppComponent.builder().application(this).build();
         appComponent.inject(this);

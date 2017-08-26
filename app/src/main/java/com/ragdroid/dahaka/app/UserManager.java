@@ -1,10 +1,10 @@
 package com.ragdroid.dahaka.app;
 
-
-
 import android.app.Activity;
 
+import com.ragdroid.dahaka.DahakaApplication;
 import com.ragdroid.dahaka.api.entity.Pokemon;
+import com.ragdroid.dahaka.user.DaggerUserComponent;
 import com.ragdroid.dahaka.user.PokemonService;
 import com.ragdroid.dahaka.user.UserComponent;
 
@@ -25,7 +25,6 @@ public class UserManager implements HasActivityInjector {
 
 
     private final PokemonService service;
-    private final UserComponent.Builder userComponentBuilder;
     @Inject DispatchingAndroidInjector<Activity> activityInjector;
 
     private Pokemon pokemonCache;
@@ -33,9 +32,8 @@ public class UserManager implements HasActivityInjector {
     private UserComponent userComponent;
 
     @Inject
-    public UserManager(PokemonService service, UserComponent.Builder builder) {
+    public UserManager(PokemonService service) {
         this.service = service;
-        this.userComponentBuilder = builder;
     }
 
     public Flowable<Pokemon> loginWithUserName(String userName) {
@@ -46,7 +44,8 @@ public class UserManager implements HasActivityInjector {
     }
 
     private void createUserSession(Pokemon pokemon) {
-        userComponent = userComponentBuilder
+        userComponent = DaggerUserComponent.builder()
+                .appComponent(DahakaApplication.getApp().getAppComponent())
                 .pokeMon(pokemon)
                 .build();
         userComponent.inject(this);
