@@ -18,9 +18,8 @@ constructor(private val pokemon: Pokemon) : BasePresenterImpl<ItemsContract.View
         super.onViewAdded(view)
         val model = ItemsModel(ArrayList())
 
-        for (item in pokemon.heldItems!!) {
-            model.items.add("Item : " + item.item?.name + "\n")
-        }
+        pokemon.heldItems?.forEach { model.items.add("Item : " + it.item?.name + "\n") }
+
         if (model.items.size.equals(0)) {
             model.items.add("No Held Items :(")
         }

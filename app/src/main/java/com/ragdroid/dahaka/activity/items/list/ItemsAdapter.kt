@@ -29,7 +29,7 @@ constructor() : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
-        val move = items[position]
+        val move = items.get(position)
         holder.dataBinding.move = move
     }
 
@@ -39,9 +39,7 @@ constructor() : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount() = items.size
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

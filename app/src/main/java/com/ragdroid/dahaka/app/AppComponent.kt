@@ -41,6 +41,4 @@ interface AppComponent {
         fun apiModule(apiModule: ApiModule): Builder
     }
 
-    fun inject(dahakaApplication: DahakaApplication)
-
 }

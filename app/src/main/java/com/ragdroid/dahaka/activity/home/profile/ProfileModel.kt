@@ -20,7 +20,7 @@ class ProfileModel private constructor(builder: Builder) {
         experience = builder.experience
     }
 
-    class Builder constructor() {
+    class Builder {
         var imageUrl: String? = null
         var name: String? = null
         var weight: Int = 0

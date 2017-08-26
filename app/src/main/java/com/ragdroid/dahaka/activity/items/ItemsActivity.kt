@@ -26,7 +26,7 @@ class ItemsActivity : BaseUserActivity<ItemsContract.Presenter, ItemsContract.Vi
     @Inject lateinit var adapter: ItemsAdapter
     @Inject lateinit var linearLayoutManager: LinearLayoutManager
     @Inject lateinit var dividerItemDecoration: DividerItemDecoration
-    private var binding: ActivityItemsBinding? = null
+    private lateinit var binding: ActivityItemsBinding
 
     override fun inject(userComponent: UserComponent) {
         itemsComponent = userComponent.itemsComponentBuilder()
@@ -45,9 +45,9 @@ class ItemsActivity : BaseUserActivity<ItemsContract.Presenter, ItemsContract.Vi
     }
 
     override fun showModel(model: ItemsModel) {
-        binding!!.itemsRecyclerView.adapter = adapter
-        binding!!.itemsRecyclerView.addItemDecoration(dividerItemDecoration)
-        binding!!.itemsRecyclerView.layoutManager = linearLayoutManager
-        adapter!!.updateList(model.items)
+        binding.itemsRecyclerView.adapter = adapter
+        binding.itemsRecyclerView.addItemDecoration(dividerItemDecoration)
+        binding.itemsRecyclerView.layoutManager = linearLayoutManager
+        adapter.updateList(model.items)
     }
 }

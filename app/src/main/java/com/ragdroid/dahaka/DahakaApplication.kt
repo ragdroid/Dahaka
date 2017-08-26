@@ -20,7 +20,6 @@ class DahakaApplication : Application() {
         super.onCreate()
         app = this
         appComponent = DaggerAppComponent.builder().application(this).build()
-        appComponent.inject(this)
         DataBindingUtil.setDefaultComponent(appComponent.bindingProvider)
     }
 

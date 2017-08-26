@@ -24,7 +24,7 @@ class HomeActivity : BaseUserActivity<HomeContract.Presenter, HomeContract.View>
     var homeComponent: HomeComponent? = null
         private set
 
-    private var viewDataBinding: ActivityHomeBinding? = null
+    private lateinit var viewDataBinding: ActivityHomeBinding
 
     private val navigationListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         val itemId = item.itemId
@@ -55,8 +55,8 @@ class HomeActivity : BaseUserActivity<HomeContract.Presenter, HomeContract.View>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        viewDataBinding!!.bottomNavigation.setOnNavigationItemSelectedListener(navigationListener)
-        viewDataBinding!!.bottomNavigation.selectedItemId = R.id.action_profile
+        viewDataBinding.bottomNavigation.setOnNavigationItemSelectedListener(navigationListener)
+        viewDataBinding.bottomNavigation.selectedItemId = R.id.action_profile
         openFragment(R.id.action_profile)
     }
 

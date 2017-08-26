@@ -41,7 +41,7 @@ constructor(private val userManager: UserManager, private val schedulerProvider:
                     loginModel.isSubmitEnabled = true
                     loginModel.isLoading = false
                 }
-                .subscribe({ pokemon ->
+                .subscribe({
                     view?.showMessage("Login Successful")
                     view?.showHome()
                 }) { throwable ->
