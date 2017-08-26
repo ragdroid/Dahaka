@@ -51,13 +51,13 @@ class ApiModule {
     @Provides
     @Singleton
     internal fun provideOkhttpCache(application: Application): Cache {
-        return Cache(application.cacheDir, CACHE_SIZE)
+        return Cache(application.cacheDir, (10 * 1024 * 1024).toLong())
     }
 
     @Provides
     @Singleton
     internal fun provideCacheOverrideInterceptor(): Interceptor {
-        return { chain ->
+        return Interceptor { chain ->
             val maxStale = 60 * 60 * 24 * 7 // tolerate 1-week stale
             chain.proceed(chain.request())
                     .newBuilder()
@@ -65,6 +65,7 @@ class ApiModule {
                     .build()
         }
     }
+
 
     @Provides
     @Singleton
@@ -94,7 +95,7 @@ class ApiModule {
                 .build()
     }
 
-    protected val baseUrl: String
+    val baseUrl: String
         get() = "http://pokeapi.co/api/v2/"
 
     @Provides
@@ -102,12 +103,5 @@ class ApiModule {
     fun providePokemonService(retrofit: Retrofit): PokemonService {
         return retrofit.create(PokemonService::class.java)
     }
-
-    companion object {
-
-
-        private val CACHE_SIZE = (10 * 1024 * 1024).toLong() //10 MB
-    }
-
 
 }

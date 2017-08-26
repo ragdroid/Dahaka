@@ -6,26 +6,27 @@ import com.ragdroid.dahaka.app.AppComponent
 import com.ragdroid.dahaka.app.UserManager
 import com.ragdroid.dahaka.mvp.BaseActivity
 import com.ragdroid.dahaka.mvp.BasePresenter
+import com.ragdroid.dahaka.mvp.BaseView
 
 
 /**
  * Created by garimajain on 18/08/17.
  */
 
-abstract class BaseUserActivity<T : BasePresenter<*>> : BaseActivity<T>() {
+abstract class BaseUserActivity<T : BasePresenter<V>, V : BaseView> : BaseActivity<T, V>() {
 
-    internal var userManager: UserManager
+    internal lateinit var userManager: UserManager
 
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!userManager.isLoggedIn) {
             finishView()
         }
     }
 
-    protected override fun initDagger(appComponent: AppComponent) {
+    override fun initDagger(appComponent: AppComponent) {
         userManager = appComponent.userManager
-        inject(userManager.userComponent)
+        userManager.userComponent?.let { inject(it) }
     }
 
     protected fun logoutUser() {
@@ -33,5 +34,5 @@ abstract class BaseUserActivity<T : BasePresenter<*>> : BaseActivity<T>() {
         finishView()
     }
 
-    protected abstract fun inject(userComponent: UserComponent?)
+    protected abstract fun inject(userComponent: UserComponent)
 }

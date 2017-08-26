@@ -11,10 +11,12 @@ import com.ragdroid.dahaka.app.AppComponent
 import com.ragdroid.dahaka.databinding.ActivityLoginBinding
 import com.ragdroid.dahaka.mvp.BaseActivity
 
-class LoginActivity : BaseActivity<LoginContract.Presenter>(), LoginContract.View {
+class LoginActivity : BaseActivity<LoginContract.Presenter, LoginContract.View>(), LoginContract.View {
 
-    private var loginComponent: LoginComponent? = null
-    private var binding: ActivityLoginBinding? = null
+    override fun getView(): LoginContract.View = this
+
+    private lateinit var loginComponent: LoginComponent
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
@@ -22,7 +24,7 @@ class LoginActivity : BaseActivity<LoginContract.Presenter>(), LoginContract.Vie
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         toolbar.setTitle(R.string.title_activity_login)
-        binding!!.presenter = presenter
+        binding.presenter = presenter
     }
 
     override fun initDagger(appComponent: AppComponent) {
@@ -30,7 +32,7 @@ class LoginActivity : BaseActivity<LoginContract.Presenter>(), LoginContract.Vie
                 .loginBuilder()
                 .loginActivity(this)
                 .build()
-        loginComponent!!.inject(this)
+        loginComponent.inject(this)
     }
 
     override fun showHome() {
@@ -40,6 +42,6 @@ class LoginActivity : BaseActivity<LoginContract.Presenter>(), LoginContract.Vie
     }
 
     override fun setModel(loginModel: LoginModel) {
-        binding!!.model = loginModel
+        binding.model = loginModel
     }
 }

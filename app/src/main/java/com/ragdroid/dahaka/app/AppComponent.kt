@@ -2,6 +2,7 @@ package com.ragdroid.dahaka.app
 
 import android.app.Application
 import android.databinding.DataBindingComponent
+import com.ragdroid.dahaka.DahakaApplication
 
 import com.ragdroid.dahaka.activity.login.LoginComponent
 import com.ragdroid.dahaka.api.ApiModule
@@ -18,12 +19,14 @@ import dagger.Component
  */
 @Singleton
 @Component(modules = arrayOf(AppModule::class, ApiModule::class))
-interface AppComponent : DataBindingComponent {
+interface AppComponent {
 
 
     fun loginBuilder(): LoginComponent.Builder
 
     val userManager: UserManager
+
+    val bindingProvider: DataBindingProvider
 
     fun schedulerProvider(): BaseSchedulerProvider
 
@@ -37,5 +40,7 @@ interface AppComponent : DataBindingComponent {
 
         fun apiModule(apiModule: ApiModule): Builder
     }
+
+    fun inject(dahakaApplication: DahakaApplication)
 
 }

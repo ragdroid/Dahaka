@@ -15,7 +15,7 @@ constructor(private val pokemon: Pokemon) : BasePresenterImpl<StatsContract.View
 
     override fun onViewAdded(view: StatsContract.View) {
         super.onViewAdded(view)
-        val model = StatsModel(pokemon.stats)
-        getView().showModel(model)
+        val model = pokemon.stats?.let { StatsModel(it) }
+        model?.let { view.showModel(it) }
     }
 }

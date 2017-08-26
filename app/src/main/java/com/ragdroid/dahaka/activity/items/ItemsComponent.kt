@@ -1,8 +1,6 @@
 package com.ragdroid.dahaka.activity.items
 
 
-import com.ragdroid.dahaka.activity.ActivityScope
-
 import dagger.BindsInstance
 import dagger.Subcomponent
 

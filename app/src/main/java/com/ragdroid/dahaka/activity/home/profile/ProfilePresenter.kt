@@ -20,19 +20,21 @@ constructor(private val pokemon: Pokemon) : BasePresenterImpl<ProfileContract.Vi
         super.onViewAdded(view)
         var url: URL? = null
         try {
-            url = URL(pokemon.sprites.frontDefault)
+            url = URL(pokemon.sprites?.frontDefault)
         } catch (e: MalformedURLException) {
             e.printStackTrace()
         }
 
-        val model = ProfileModel.newBuilder()
+        val model = pokemon.name?.let {
+            ProfileModel.newBuilder()
                 .experience(pokemon.baseExperience!!)
                 .height(pokemon.height!!)
                 .imageUrl(if (url != null) url.toString() else "")
                 .weight(pokemon.weight!!)
-                .name(pokemon.name)
+                .name(it)
                 .build()
-        getView().showModel(model)
+        }
+        model?.let { view.showModel(it) }
 
     }
 }

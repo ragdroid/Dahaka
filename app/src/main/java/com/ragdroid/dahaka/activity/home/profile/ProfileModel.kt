@@ -20,35 +20,35 @@ class ProfileModel private constructor(builder: Builder) {
         experience = builder.experience
     }
 
-    class Builder private constructor() {
-        private var imageUrl: String? = null
-        private var name: String? = null
-        private var weight: Int = 0
-        private var height: Int = 0
-        private var experience: Int = 0
+    class Builder constructor() {
+        var imageUrl: String? = null
+        var name: String? = null
+        var weight: Int = 0
+        var height: Int = 0
+        var experience: Int = 0
 
-        fun imageUrl(`val`: String): Builder {
-            imageUrl = `val`
+        fun imageUrl(value: String): Builder {
+            imageUrl = value
             return this
         }
 
-        fun name(`val`: String): Builder {
-            name = `val`
+        fun name(value: String): Builder {
+            name = value
             return this
         }
 
-        fun weight(`val`: Int): Builder {
-            weight = `val`
+        fun weight(value: Int): Builder {
+            weight = value
             return this
         }
 
-        fun height(`val`: Int): Builder {
-            height = `val`
+        fun height(value: Int): Builder {
+            height = value
             return this
         }
 
-        fun experience(`val`: Int): Builder {
-            experience = `val`
+        fun experience(value: Int): Builder {
+            experience = value
             return this
         }
 

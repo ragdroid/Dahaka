@@ -12,17 +12,13 @@ import com.ragdroid.dahaka.api.entity.Pokemon
 
 class MovesModel(moves: List<Pokemon.Move>) : BaseObservable() {
 
-    @Bindable
-    fun getMoves(): String {
-        return moves
-    }
 
-    fun setMoves(moves: String) {
-        this.moves = moves
+    @get:Bindable
+    var moves: String? = null
+    set(moves) {
+        field = moves
         notifyPropertyChanged(BR.moves)
     }
-
-    var moves: String
 
     init {
         decorateMoves(moves)
@@ -31,7 +27,7 @@ class MovesModel(moves: List<Pokemon.Move>) : BaseObservable() {
     private fun decorateMoves(moves: List<Pokemon.Move>) {
         val stringBuilder = StringBuilder("Moves : \n")
         for (move in moves) {
-            stringBuilder.append(move.move.name)
+            stringBuilder.append(move.move?.name)
             stringBuilder.append("\n")
         }
         this.moves = stringBuilder.toString()

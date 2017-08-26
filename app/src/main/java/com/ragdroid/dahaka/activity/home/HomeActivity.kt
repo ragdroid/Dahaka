@@ -17,8 +17,9 @@ import com.ragdroid.dahaka.databinding.ActivityHomeBinding
 import com.ragdroid.dahaka.user.BaseUserActivity
 import com.ragdroid.dahaka.user.UserComponent
 
-class HomeActivity : BaseUserActivity<HomeContract.Presenter>() {
+class HomeActivity : BaseUserActivity<HomeContract.Presenter, HomeContract.View>(), HomeContract.View {
 
+    override fun getView(): HomeContract.View = this
 
     var homeComponent: HomeComponent? = null
         private set

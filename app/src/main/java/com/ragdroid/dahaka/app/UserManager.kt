@@ -35,7 +35,7 @@ constructor(private val service: PokemonService) {
 
     private fun createUserSession(pokemon: Pokemon) {
         userComponent = DaggerUserComponent.builder()
-                .appComponent(DahakaApplication.getApp().appComponent)
+                .appComponent(DahakaApplication.app.appComponent)
                 .pokeMon(pokemon)
                 .build()
     }

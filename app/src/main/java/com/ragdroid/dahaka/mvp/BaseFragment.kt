@@ -14,29 +14,31 @@ import javax.inject.Inject
  * Created by garimajain on 13/08/17.
  */
 
-abstract class BaseFragment<T : BasePresenter<*>> : Fragment(), BaseView {
+abstract class BaseFragment<T : BasePresenter<V>, V : BaseView> : Fragment() {
 
     @Inject
-    var presenter: T? = null
+    lateinit var presenter: T
         internal set
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initDagger()
-        presenter!!.onViewAdded(this)
+        presenter.onViewAdded(getFragmentView())
     }
 
-    override fun showMessage(message: String) {
+    abstract fun getFragmentView(): V
+
+    fun showMessage(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDetach() {
-        presenter!!.onViewRemoved()
+        presenter.onViewRemoved()
         super.onDetach()
     }
 
-    override fun finishView() {
+    fun finishView() {
         showMessage(getString(R.string.session_expired))
         startActivity(Intent(activity, LoginActivity::class.java))
         activity.finish()

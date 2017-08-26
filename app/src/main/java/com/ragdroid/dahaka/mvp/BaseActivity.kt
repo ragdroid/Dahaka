@@ -15,28 +15,30 @@ import javax.inject.Inject
  * Created by garimajain on 13/08/17.
  */
 
-abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity(), BaseView {
+abstract class BaseActivity<T : BasePresenter<V>, V : BaseView> : AppCompatActivity() {
 
     @Inject
-    var presenter: T? = null
+    lateinit var presenter: T
         internal set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDagger((application as DahakaApplication).appComponent)
-        presenter!!.onViewAdded(this)
+        presenter.onViewAdded(getView())
     }
 
-    override fun showMessage(message: String) {
+    abstract fun getView(): V
+
+    fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {
-        presenter!!.onViewRemoved()
+        presenter.onViewRemoved()
         super.onDestroy()
     }
 
-    override fun finishView() {
+    fun finishView() {
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }

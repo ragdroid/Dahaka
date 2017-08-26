@@ -18,12 +18,14 @@ import javax.inject.Inject
  * Created by garimajain on 19/08/17.
  */
 
-class ItemsActivity : BaseUserActivity<ItemsContract.Presenter>(), ItemsContract.View {
+class ItemsActivity : BaseUserActivity<ItemsContract.Presenter, ItemsContract.View>(), ItemsContract.View {
+
+    override fun getView(): ItemsContract.View = this
 
     private var itemsComponent: ItemsComponent? = null
-    @Inject internal var adapter: ItemsAdapter? = null
-    @Inject internal var linearLayoutManager: LinearLayoutManager? = null
-    @Inject internal var dividerItemDecoration: DividerItemDecoration? = null
+    @Inject lateinit var adapter: ItemsAdapter
+    @Inject lateinit var linearLayoutManager: LinearLayoutManager
+    @Inject lateinit var dividerItemDecoration: DividerItemDecoration
     private var binding: ActivityItemsBinding? = null
 
     override fun inject(userComponent: UserComponent) {

@@ -14,7 +14,7 @@ constructor(private val pokemon: Pokemon) : BasePresenterImpl<MovesContract.View
 
     override fun onViewAdded(view: MovesContract.View) {
         super.onViewAdded(view)
-        val model = MovesModel(pokemon.moves)
-        getView().showModel(model)
+        val model = pokemon.moves?.let { MovesModel(it) }
+        model?.let { view.showModel(it) }
     }
 }

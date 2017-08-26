@@ -45,7 +45,7 @@ constructor() : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val dataBinding: ItemHeldBinding
+        val dataBinding: ItemHeldBinding
 
         init {
             dataBinding = DataBindingUtil.bind(itemView)

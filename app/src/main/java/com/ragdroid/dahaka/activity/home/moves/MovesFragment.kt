@@ -17,9 +17,10 @@ import com.ragdroid.dahaka.user.BaseUserActivity
  * Created by garimajain on 16/08/17.
  */
 
-class MovesFragment : BaseFragment<MovesContract.Presenter>(), MovesContract.View {
+class MovesFragment : BaseFragment<MovesContract.Presenter, MovesContract.View>(), MovesContract.View {
+    override fun getFragmentView(): MovesContract.View = this
 
-    private var dataBinding: FragmentMovesBinding? = null
+    private lateinit var dataBinding: FragmentMovesBinding
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -29,10 +30,10 @@ class MovesFragment : BaseFragment<MovesContract.Presenter>(), MovesContract.Vie
     }
 
     override fun initDagger() {
-        (activity as HomeActivity).homeComponent.inject(this)
+        (activity as HomeActivity).homeComponent?.inject(this)
     }
 
     override fun showModel(statsModel: MovesModel) {
-        dataBinding!!.model = statsModel
+        dataBinding.model = statsModel
     }
 }

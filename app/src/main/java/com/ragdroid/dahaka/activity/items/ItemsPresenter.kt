@@ -16,15 +16,15 @@ constructor(private val pokemon: Pokemon) : BasePresenterImpl<ItemsContract.View
 
     override fun onViewAdded(view: ItemsContract.View) {
         super.onViewAdded(view)
-        val model = ItemsModel()
-        model.setItems(ArrayList<E>())
-        for (item in pokemon.heldItems) {
-            model.getItems().add("Item : " + item.item.name + "\n")
+        val model = ItemsModel(ArrayList())
+
+        for (item in pokemon.heldItems!!) {
+            model.items.add("Item : " + item.item?.name + "\n")
         }
-        if (model.getItems().size() === 0) {
-            model.getItems().add("No Held Items :(")
+        if (model.items.size.equals(0)) {
+            model.items.add("No Held Items :(")
         }
 
-        getView().showModel(model)
+        view.showModel(model)
     }
 }

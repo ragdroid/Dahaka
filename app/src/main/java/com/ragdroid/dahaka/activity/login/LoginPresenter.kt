@@ -19,33 +19,34 @@ import io.reactivex.functions.Consumer
 @ActivityScope
 class LoginPresenter @Inject
 constructor(private val userManager: UserManager, private val schedulerProvider: BaseSchedulerProvider) : BasePresenterImpl<LoginContract.View>(), LoginContract.Presenter {
-    private var loginModel: LoginModel? = null
+    private lateinit var loginModel: LoginModel
 
     override fun onViewAdded(view: LoginContract.View) {
         super.onViewAdded(view)
-        getView().setModel(loginModel = LoginModel())
+        loginModel = LoginModel()
+        view.setModel(loginModel)
     }
 
     override fun onSubmitClicked() {
-        if (TextUtil.isEmpty(loginModel!!.userName)) {
-            view.showMessage("Please enter username or id")
+        if (TextUtil.isEmpty(loginModel.userName)) {
+            view?.showMessage("Please enter username or id")
             return
         }
-        loginModel!!.isSubmitEnabled = false
-        loginModel!!.isLoading = true
-        val disposable = userManager.loginWithUserName(loginModel!!.userName!!.toLowerCase())
+        loginModel.isSubmitEnabled = false
+        loginModel.isLoading = true
+        val disposable = userManager.loginWithUserName(loginModel.userName!!.toLowerCase())
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .doFinally {
-                    loginModel!!.isSubmitEnabled = true
-                    loginModel!!.isLoading = false
+                    loginModel.isSubmitEnabled = true
+                    loginModel.isLoading = false
                 }
                 .subscribe({ pokemon ->
-                    view.showMessage("Login Successful")
-                    view.showHome()
+                    view?.showMessage("Login Successful")
+                    view?.showHome()
                 }) { throwable ->
                     throwable.printStackTrace()
-                    view.showMessage(throwable.message)
+                    throwable.message?.let { view?.showMessage(it) }
                 }
         compositeDisposable.add(disposable)
 

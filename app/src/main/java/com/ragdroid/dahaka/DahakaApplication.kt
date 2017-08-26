@@ -12,7 +12,7 @@ import com.ragdroid.dahaka.app.DaggerAppComponent
 
 class DahakaApplication : Application() {
 
-    var appComponent: AppComponent? = null
+    lateinit var appComponent: AppComponent
         private set
 
 
@@ -20,13 +20,13 @@ class DahakaApplication : Application() {
         super.onCreate()
         app = this
         appComponent = DaggerAppComponent.builder().application(this).build()
-        DataBindingUtil.setDefaultComponent(appComponent)
+        appComponent.inject(this)
+        DataBindingUtil.setDefaultComponent(appComponent.bindingProvider)
     }
 
     companion object {
 
-
-        var app: DahakaApplication
+        lateinit var app: DahakaApplication
             internal set
     }
 

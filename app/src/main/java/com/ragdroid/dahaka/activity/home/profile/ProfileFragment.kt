@@ -15,7 +15,9 @@ import com.ragdroid.dahaka.mvp.BaseFragment
  * Created by garimajain on 16/08/17.
  */
 
-class ProfileFragment : BaseFragment<ProfileContract.Presenter>(), ProfileContract.View {
+class ProfileFragment : BaseFragment<ProfileContract.Presenter, ProfileContract.View>(), ProfileContract.View {
+
+    override fun getFragmentView(): ProfileContract.View = this
 
     private var dataBinding: FragmentProfileBinding? = null
 
@@ -27,7 +29,7 @@ class ProfileFragment : BaseFragment<ProfileContract.Presenter>(), ProfileContra
     }
 
     override fun initDagger() {
-        (activity as HomeActivity).homeComponent.inject(this)
+        (activity as HomeActivity).homeComponent?.inject(this)
     }
 
     override fun showModel(model: ProfileModel) {

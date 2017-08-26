@@ -12,17 +12,12 @@ import com.ragdroid.dahaka.api.entity.Pokemon
 
 class StatsModel(stats: List<Pokemon.Stat>) : BaseObservable() {
 
-    @Bindable
-    fun getStats(): String {
-        return stats
-    }
-
-    fun setStats(stats: String) {
-        this.stats = stats
+    @get:Bindable
+    var stats: String? = null
+    set(stats) {
+        field = stats
         notifyPropertyChanged(BR.stats)
     }
-
-    var stats: String
 
     init {
         decorateMoves(stats)
@@ -32,7 +27,7 @@ class StatsModel(stats: List<Pokemon.Stat>) : BaseObservable() {
         val stringBuilder = StringBuilder()
         stringBuilder.append("Stats : \n")
         for (stat in stats) {
-            stringBuilder.append(stat.stat.name + " : " + stat.baseStat)
+            stringBuilder.append(stat.stat?.name + " : " + stat.baseStat)
             stringBuilder.append("\n")
         }
         this.stats = stringBuilder.toString()

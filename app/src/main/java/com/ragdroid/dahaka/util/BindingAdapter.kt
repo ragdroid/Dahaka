@@ -75,12 +75,9 @@ constructor(private val requestManager: RequestManager) {
         textView.text = String.format(stringFormat, variable)
     }
 
-    companion object {
-
-        @BindingConversion
-        fun convertBooleanToVisibility(visible: Boolean): Int {
-            return if (visible) View.VISIBLE else View.GONE
-        }
+    @android.databinding.BindingAdapter(value = *arrayOf("setVisible"))
+    fun setVisible(view: View, visible: Boolean) {
+        view.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
 }
