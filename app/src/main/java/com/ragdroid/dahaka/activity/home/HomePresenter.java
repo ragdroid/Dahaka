@@ -1,6 +1,7 @@
 package com.ragdroid.dahaka.activity.home;
 
 import com.ragdroid.dahaka.mvp.BasePresenterImpl;
+import com.ragdroid.dahaka.util.BaseSchedulerProvider;
 
 import javax.inject.Inject;
 
@@ -10,8 +11,10 @@ import javax.inject.Inject;
 
 public class HomePresenter extends BasePresenterImpl<HomeContract.View> implements HomeContract.Presenter  {
 
-    @Inject
-    public HomePresenter() {
+    private final BaseSchedulerProvider schedulerProvider;
 
+    @Inject
+    public HomePresenter(BaseSchedulerProvider schedulerProvider) {
+        this.schedulerProvider = schedulerProvider;
     }
 }

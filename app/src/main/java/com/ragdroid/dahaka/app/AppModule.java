@@ -4,8 +4,6 @@ import android.app.Application;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.ragdroid.dahaka.util.BaseSchedulerProvider;
-import com.ragdroid.dahaka.util.SchedulerProvider;
 
 import javax.inject.Singleton;
 
@@ -15,13 +13,8 @@ import dagger.Provides;
 /**
  * Created by garimajain on 13/08/17.
  */
-@Module
+@Module(includes = SchedulerModule.class)
 public class AppModule {
-
-    @Provides
-    BaseSchedulerProvider providerSchedulerProvider(SchedulerProvider provider) {
-        return provider;
-    }
 
     @Provides
     @Singleton

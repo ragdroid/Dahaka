@@ -6,6 +6,7 @@ import android.databinding.DataBindingComponent;
 import com.ragdroid.dahaka.activity.login.LoginComponent;
 import com.ragdroid.dahaka.api.ApiModule;
 import com.ragdroid.dahaka.user.UserComponent;
+import com.ragdroid.dahaka.util.BaseSchedulerProvider;
 
 import javax.inject.Singleton;
 
@@ -23,6 +24,8 @@ public interface AppComponent extends DataBindingComponent {
     LoginComponent.Builder loginBuilder();
 
     UserManager getUserManager();
+
+    BaseSchedulerProvider schedulerProvider();
 
     @Component.Builder
     interface Builder {
