@@ -19,7 +19,7 @@ import com.ragdroid.dahaka.user.BaseUserActivity;
 
 import javax.inject.Inject;
 
-public class HomeActivity extends BaseUserActivity<HomeContract.Presenter> {
+public class HomeActivity extends BaseUserActivity<HomeContract.Presenter, HomeContract.View> {
 
 
     @Inject ProfileFragment profileFragment;
