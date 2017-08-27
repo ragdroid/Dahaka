@@ -75,9 +75,20 @@ constructor(private val requestManager: RequestManager) {
         textView.text = String.format(stringFormat, variable)
     }
 
-    @android.databinding.BindingAdapter(value = *arrayOf("setVisible"))
-    fun setVisible(view: View, visible: Boolean) {
-        view.visibility = if (visible) View.VISIBLE else View.GONE
+
+    //this is just to show how static methods would work, not used
+    companion object {
+        @android.databinding.BindingAdapter(value = *arrayOf("setVisible"))
+        @JvmStatic
+        fun setVisible(view: View, visible: Boolean) {
+            view.visibility = if (visible) View.VISIBLE else View.GONE
+        }
+
     }
 
+}
+
+@BindingConversion
+internal fun convertBooleanToVisibility(visible: Boolean): Int {
+    return if (visible) View.VISIBLE else View.GONE
 }

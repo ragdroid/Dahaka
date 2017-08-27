@@ -10,5 +10,9 @@ import javax.inject.Singleton
 @Singleton
 class DataBindingProvider @Inject
 constructor(private val bindingAdapter: BindingAdapter) : android.databinding.DataBindingComponent {
+    override fun getCompanion(): BindingAdapter.Companion {
+        return BindingAdapter.Companion
+    }
+
     override fun getBindingAdapter(): BindingAdapter = bindingAdapter
 }

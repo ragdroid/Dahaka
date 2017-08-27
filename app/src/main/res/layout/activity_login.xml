@@ -70,7 +70,7 @@
                 android:layout_marginTop="@dimen/space_medium"
                 android:layout_width="@dimen/progress_edge"
                 android:layout_height="@dimen/progress_edge"
-                app:setVisible="@{model.loading}"
+                android:visibility="@{model.loading}"
                 />
         </LinearLayout>
 
