@@ -7,13 +7,13 @@ import java.util.List;
 public class Pokemon {
 
 
-    private Integer id;
+    private int id;
     private String name;
-    private Integer baseExperience;
-    private Integer height;
+    private int baseExperience;
+    private int height;
     private Boolean isDefault;
-    private Integer order;
-    private Integer weight;
+    private int order;
+    private int weight;
     private List<Ability> abilities = null;
     private List<Form> forms = null;
     private List<GameIndex> gameIndices = null;
@@ -25,11 +25,11 @@ public class Pokemon {
     private List<Stat> stats = null;
     private List<Type> types = null;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,19 +41,19 @@ public class Pokemon {
         this.name = name;
     }
 
-    public Integer getBaseExperience() {
+    public int getBaseExperience() {
         return baseExperience;
     }
 
-    public void setBaseExperience(Integer baseExperience) {
+    public void setBaseExperience(int baseExperience) {
         this.baseExperience = baseExperience;
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -65,19 +65,19 @@ public class Pokemon {
         this.isDefault = isDefault;
     }
 
-    public Integer getOrder() {
+    public int getOrder() {
         return order;
     }
 
-    public void setOrder(Integer order) {
+    public void setOrder(int order) {
         this.order = order;
     }
 
-    public Integer getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -166,7 +166,7 @@ public class Pokemon {
     public static class Ability {
 
         private Boolean isHidden;
-        private Integer slot;
+        private int slot;
 
 
         private AbilityDetail ability;
@@ -179,11 +179,11 @@ public class Pokemon {
             this.isHidden = isHidden;
         }
 
-        public Integer getSlot() {
+        public int getSlot() {
             return slot;
         }
 
-        public void setSlot(Integer slot) {
+        public void setSlot(int slot) {
             this.slot = slot;
         }
 
@@ -248,25 +248,25 @@ public class Pokemon {
 
     public static class EncounterDetail {
 
-        private Integer minLevel;
-        private Integer maxLevel;
+        private int minLevel;
+        private int maxLevel;
         private List<ConditionValue> conditionValues = null;
-        private Integer chance;
+        private int chance;
         private Method method;
 
-        public Integer getMinLevel() {
+        public int getMinLevel() {
             return minLevel;
         }
 
-        public void setMinLevel(Integer minLevel) {
+        public void setMinLevel(int minLevel) {
             this.minLevel = minLevel;
         }
 
-        public Integer getMaxLevel() {
+        public int getMaxLevel() {
             return maxLevel;
         }
 
-        public void setMaxLevel(Integer maxLevel) {
+        public void setMaxLevel(int maxLevel) {
             this.maxLevel = maxLevel;
         }
 
@@ -278,11 +278,11 @@ public class Pokemon {
             this.conditionValues = conditionValues;
         }
 
-        public Integer getChance() {
+        public int getChance() {
             return chance;
         }
 
-        public void setChance(Integer chance) {
+        public void setChance(int chance) {
             this.chance = chance;
         }
 
@@ -322,14 +322,14 @@ public class Pokemon {
 
     public static class GameIndex {
 
-        private Integer gameIndex;
+        private int gameIndex;
         private Version version;
 
-        public Integer getGameIndex() {
+        public int getGameIndex() {
             return gameIndex;
         }
 
-        public void setGameIndex(Integer gameIndex) {
+        public void setGameIndex(int gameIndex) {
             this.gameIndex = gameIndex;
         }
 
@@ -597,23 +597,23 @@ public class Pokemon {
 
     public static class Stat {
 
-        private Integer baseStat;
-        private Integer effort;
+        private int baseStat;
+        private int effort;
         private StatDetail stat;
 
-        public Integer getBaseStat() {
+        public int getBaseStat() {
             return baseStat;
         }
 
-        public void setBaseStat(Integer baseStat) {
+        public void setBaseStat(int baseStat) {
             this.baseStat = baseStat;
         }
 
-        public Integer getEffort() {
+        public int getEffort() {
             return effort;
         }
 
-        public void setEffort(Integer effort) {
+        public void setEffort(int effort) {
             this.effort = effort;
         }
 
@@ -660,14 +660,14 @@ public class Pokemon {
 
 
 
-        private Integer slot;
+        private int slot;
         private TypeDetail type;
 
-        public Integer getSlot() {
+        public int getSlot() {
             return slot;
         }
 
-        public void setSlot(Integer slot) {
+        public void setSlot(int slot) {
             this.slot = slot;
         }
 
@@ -740,14 +740,14 @@ public class Pokemon {
     public static class VersionDetail {
 
 
-        private Integer rarity;
+        private int rarity;
         private Version version;
 
-        public Integer getRarity() {
+        public int getRarity() {
             return rarity;
         }
 
-        public void setRarity(Integer rarity) {
+        public void setRarity(int rarity) {
             this.rarity = rarity;
         }
 
@@ -768,7 +768,7 @@ public class Pokemon {
 
 
 
-        private Integer maxChance;
+        private int maxChance;
 
 
         private List<EncounterDetail> encounterDetails = null;
@@ -776,11 +776,11 @@ public class Pokemon {
 
         private Version version;
 
-        public Integer getMaxChance() {
+        public int getMaxChance() {
             return maxChance;
         }
 
-        public void setMaxChance(Integer maxChance) {
+        public void setMaxChance(int maxChance) {
             this.maxChance = maxChance;
         }
 
@@ -834,15 +834,15 @@ public class Pokemon {
 
     public static class VersionGroupDetail {
 
-        private Integer levelLearnedAt;
+        private int levelLearnedAt;
         private VersionGroup versionGroup;
         private MoveLearnMethod moveLearnMethod;
 
-        public Integer getLevelLearnedAt() {
+        public int getLevelLearnedAt() {
             return levelLearnedAt;
         }
 
-        public void setLevelLearnedAt(Integer levelLearnedAt) {
+        public void setLevelLearnedAt(int levelLearnedAt) {
             this.levelLearnedAt = levelLearnedAt;
         }
 

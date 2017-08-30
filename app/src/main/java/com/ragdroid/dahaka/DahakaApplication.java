@@ -7,6 +7,7 @@ import android.databinding.DataBindingUtil;
 import com.ragdroid.dahaka.app.AppComponent;
 import com.ragdroid.dahaka.app.DaggerAppComponent;
 import com.ragdroid.dahaka.app.DaggerAppDataBindingComponent;
+import com.ragdroid.dahaka.app.UserManager;
 
 import javax.inject.Inject;
 
@@ -21,6 +22,7 @@ import dagger.android.HasActivityInjector;
 public class DahakaApplication extends Application implements HasActivityInjector {
 
     @Inject DispatchingAndroidInjector<Activity> activityInjector;
+    @Inject UserManager userManager;
 
     public AppComponent getAppComponent() {
         return appComponent;
@@ -32,6 +34,10 @@ public class DahakaApplication extends Application implements HasActivityInjecto
     public void onCreate() {
         super.onCreate();
         DataBindingUtil.setDefaultComponent(buildDataBindingComponent());
+        createComponent();
+    }
+
+    protected void createComponent() {
         appComponent = DaggerAppComponent.builder().application(this).build();
         appComponent.inject(this);
     }
@@ -42,6 +48,6 @@ public class DahakaApplication extends Application implements HasActivityInjecto
 
     @Override
     public AndroidInjector<Activity> activityInjector() {
-        return activityInjector;
+        return userManager.activityInjector();
     }
 }

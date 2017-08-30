@@ -8,6 +8,10 @@ import com.ragdroid.dahaka.app.UserManager;
 import com.ragdroid.dahaka.mvp.BaseActivity;
 import com.ragdroid.dahaka.mvp.BasePresenter;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+
 
 /**
  * Created by garimajain on 18/08/17.
@@ -15,7 +19,7 @@ import com.ragdroid.dahaka.mvp.BasePresenter;
 
 public abstract class BaseUserActivity<T extends BasePresenter> extends BaseActivity<T> {
 
-    UserManager userManager;
+    @Inject UserManager userManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,9 +31,7 @@ public abstract class BaseUserActivity<T extends BasePresenter> extends BaseActi
 
     @Override
     protected void androidInject() {
-        userManager = ((DahakaApplication)getApplication())
-                .getAppComponent().getUserManager();
-        UserInjection.inject(this, userManager);
+        AndroidInjection.inject(this);
     }
 
     protected void logoutUser() {
