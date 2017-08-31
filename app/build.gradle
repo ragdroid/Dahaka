@@ -10,7 +10,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.ragdroid.dahaka.dagger.TestRunner"
+        testInstrumentationRunner "com.ragdroid.dahaka.app.TestRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

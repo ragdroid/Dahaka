@@ -1,7 +1,8 @@
-package com.ragdroid.dahaka.dagger;
+package com.ragdroid.dahaka;
 
 
-import com.ragdroid.dahaka.DahakaApplication;
+import com.ragdroid.dahaka.app.DaggerTestComponent;
+import com.ragdroid.dahaka.app.TestComponent;
 
 /**
  * Created by garimajain on 28/08/17.

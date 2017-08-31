@@ -1,11 +1,9 @@
-package com.ragdroid.dahaka.dagger;
+package com.ragdroid.dahaka.api;
 
 import com.ragdroid.dahaka.user.PokemonService;
 
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import javax.inject.Singleton;
 

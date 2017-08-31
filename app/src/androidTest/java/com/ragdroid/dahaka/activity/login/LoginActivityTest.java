@@ -3,16 +3,12 @@ package com.ragdroid.dahaka.activity.login;
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ragdroid.dahaka.BaseTest;
+import com.ragdroid.dahaka.DahakaTestApplication;
 import com.ragdroid.dahaka.R;
-import com.ragdroid.dahaka.api.entity.Pokemon;
-import com.ragdroid.dahaka.dagger.DahakaTestApplication;
-import com.ragdroid.dahaka.dagger.TestComponent;
+import com.ragdroid.dahaka.app.TestComponent;
 import com.ragdroid.dahaka.user.PokemonService;
 
 import org.junit.Before;

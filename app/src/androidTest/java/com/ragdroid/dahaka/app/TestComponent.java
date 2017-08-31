@@ -1,18 +1,16 @@
-package com.ragdroid.dahaka.dagger;
+package com.ragdroid.dahaka.app;
 
 import android.app.Application;
 
+import com.ragdroid.dahaka.DahakaTestApplication;
 import com.ragdroid.dahaka.activity.AppBindingModule;
 import com.ragdroid.dahaka.activity.login.LoginActivityTest;
-import com.ragdroid.dahaka.app.UserManager;
-import com.ragdroid.dahaka.user.UserComponent;
+import com.ragdroid.dahaka.api.MockApiModule;
 
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
-import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
@@ -24,12 +22,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         MockApiModule.class,
         AppBindingModule.class,
         AndroidSupportInjectionModule.class})
-public interface TestComponent extends AndroidInjector<DaggerApplication> {
-
-
-    UserComponent.Builder userBuilder();
-
-    UserManager getUserManager();
+public interface TestComponent extends AppComponent {
 
     void inject(DahakaTestApplication instance);
 

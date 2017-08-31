@@ -1,8 +1,10 @@
-package com.ragdroid.dahaka.dagger;
+package com.ragdroid.dahaka.app;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.test.runner.AndroidJUnitRunner;
+
+import com.ragdroid.dahaka.DahakaTestApplication;
 
 
 public class TestRunner extends AndroidJUnitRunner {

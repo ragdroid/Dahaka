@@ -1,5 +1,6 @@
-package com.ragdroid.dahaka.dagger;
+package com.ragdroid.dahaka.app;
 
+import com.ragdroid.dahaka.app.UserManager;
 import com.ragdroid.dahaka.util.BaseSchedulerProvider;
 
 import org.junit.runner.RunWith;
