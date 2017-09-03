@@ -1,20 +1,36 @@
 package com.ragdroid.dahaka.app;
 
+import android.app.Activity;
+
 import com.ragdroid.dahaka.activity.ActivityScope;
-import com.ragdroid.dahaka.activity.AppBindingModule;
 import com.ragdroid.dahaka.activity.login.LoginActivity;
 import com.ragdroid.dahaka.activity.login.LoginModule;
-import com.ragdroid.dahaka.activity.login.TestLoginModule;
 
-import dagger.android.ContributesAndroidInjector;
+import dagger.Binds;
+import dagger.Module;
+import dagger.Subcomponent;
+import dagger.android.ActivityKey;
+import dagger.android.AndroidInjector;
+import dagger.multibindings.IntoMap;
 
 /**
  * Created by garimajain on 31/08/17.
  */
 
-public abstract class TestAppBindingModule extends AppBindingModule {
+@Module(subcomponents = TestAppBindingModule.LoginActivitySubcomponent.class)
+public abstract class TestAppBindingModule {
+    private TestAppBindingModule() {}
 
-    @ContributesAndroidInjector(modules = TestLoginModule.class)
+    @Binds
+    @IntoMap
+    @ActivityKey(LoginActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity> bindAndroidInjectorFactory(
+            LoginActivitySubcomponent.Builder builder);
+
+    @Subcomponent(modules = LoginModule.class)
     @ActivityScope
-    abstract LoginActivity loginActivity();
+    public interface LoginActivitySubcomponent extends AndroidInjector<LoginActivity> {
+        @Subcomponent.Builder
+        abstract class Builder extends AndroidInjector.Builder<LoginActivity> {}
+    }
 }

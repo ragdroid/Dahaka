@@ -20,7 +20,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         MockAppModule.class,
         MockApiModule.class,
-        AppBindingModule.class,
+        TestAppBindingModule.class,
         AndroidSupportInjectionModule.class})
 public interface TestComponent extends AppComponent {
 
