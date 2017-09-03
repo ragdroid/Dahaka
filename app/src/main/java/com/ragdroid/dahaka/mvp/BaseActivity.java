@@ -3,33 +3,44 @@ package com.ragdroid.dahaka.mvp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.ragdroid.dahaka.DahakaApplication;
 import com.ragdroid.dahaka.activity.login.LoginActivity;
-import com.ragdroid.dahaka.app.AppComponent;
 
 import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by garimajain on 13/08/17.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView,
+        HasSupportFragmentInjector {
 
     public T getPresenter() {
         return presenter;
     }
+
+    @Inject DispatchingAndroidInjector<Fragment> injector;
 
     @Inject
     T presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        androidInject();
         super.onCreate(savedInstanceState);
-        initDagger(((DahakaApplication) getApplication()).getAppComponent());
         presenter.onViewAdded(this);
+    }
+
+    protected void androidInject() {
+        AndroidInjection.inject(this);
     }
 
     @Override
@@ -48,6 +59,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return injector;
+    }
 
-    protected abstract void initDagger(AppComponent appComponent);
 }

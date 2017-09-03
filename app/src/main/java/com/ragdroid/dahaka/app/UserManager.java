@@ -1,6 +1,9 @@
 package com.ragdroid.dahaka.app;
 
 
+
+import android.app.Activity;
+
 import com.ragdroid.dahaka.api.entity.Pokemon;
 import com.ragdroid.dahaka.user.PokemonService;
 import com.ragdroid.dahaka.user.UserComponent;
@@ -8,24 +11,24 @@ import com.ragdroid.dahaka.user.UserComponent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by garimajain on 13/08/17.
  */
 @Singleton
-public class UserManager {
+public class UserManager implements HasActivityInjector {
+
 
     private final PokemonService service;
     private final UserComponent.Builder userComponentBuilder;
+    @Inject DispatchingAndroidInjector<Activity> activityInjector;
 
     private Pokemon pokemonCache;
-
-    public UserComponent getUserComponent() {
-        return userComponent;
-    }
 
     private UserComponent userComponent;
 
@@ -39,18 +42,14 @@ public class UserManager {
         return getPokemonMaybeFromCache()
                 .concatWith(service.getPokemon(userName).toMaybe())
                 .take(1)
-                .doOnNext(new Consumer<Pokemon>() {
-                    @Override
-                    public void accept(Pokemon pokemon) throws Exception {
-                        createUserSession(pokemon);
-                    }
-                });
+                .doOnNext(this::createUserSession);
     }
 
     private void createUserSession(Pokemon pokemon) {
         userComponent = userComponentBuilder
                 .pokeMon(pokemon)
                 .build();
+        userComponent.inject(this);
     }
 
 
@@ -71,5 +70,8 @@ public class UserManager {
         userComponent = null;
     }
 
-
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return activityInjector;
+    }
 }

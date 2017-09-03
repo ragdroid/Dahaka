@@ -10,7 +10,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.ragdroid.dahaka.app.TestRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -32,6 +32,10 @@ android {
 
 
 }
+final supportVersion = '26.0.1'
+final retrofitVersion = '2.3.0'
+final espressoVersion = '3.0.0'
+final daggerVersion = '2.11'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -39,31 +43,41 @@ dependencies {
     // if you use the support libraries
 
 
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile "com.android.support:appcompat-v7:${supportVersion}"
+    compile "com.android.support:design:${supportVersion}"
+    compile "com.android.support:support-vector-drawable:${supportVersion}"
 
-    compile 'com.google.dagger:dagger-android:2.11'
-    compile 'com.google.dagger:dagger-android-support:2.11'
-    compile 'com.google.dagger:dagger:2.11'
+    compile "com.google.dagger:dagger-android:${daggerVersion}"
+    compile "com.google.dagger:dagger-android-support:${daggerVersion}"
+    compile "com.google.dagger:dagger:${daggerVersion}"
 
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    annotationProcessor "com.google.dagger:dagger-android-processor:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.code.gson:gson:2.8.1'
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
     compile 'com.github.bumptech.glide:glide:4.0.0'
     compile 'jp.wasabeef:glide-transformations:2.0.2'
 
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:support-vector-drawable:26.0.0-alpha1'
 
 
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
     provided 'javax.annotation:jsr250-api:1.0'
+
+    androidTestCompile "com.android.support.test:runner:1.0.0"
+    androidTestCompile "com.android.support.test:rules:1.0.0"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:${espressoVersion}"
+    androidTestCompile 'org.mockito:mockito-android:2.8.47'
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.11"
+
 }

@@ -61,7 +61,7 @@
             <Button
                 android:enabled="@{model.submitEnabled}"
                 android:layout_marginTop="@dimen/keyline_1"
-                android:id="@+id/submit_button"
+                android:id="@+id/login_submit_button"
                 android:text="@string/submit"
                 android:onClick="@{() -> presenter.onSubmitClicked()}"
                 android:layout_width="match_parent"

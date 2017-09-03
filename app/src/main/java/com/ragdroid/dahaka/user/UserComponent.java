@@ -1,32 +1,30 @@
 package com.ragdroid.dahaka.user;
 
-import com.ragdroid.dahaka.activity.home.HomeComponent;
-import com.ragdroid.dahaka.activity.home.moves.MovesFragment;
-import com.ragdroid.dahaka.activity.home.profile.ProfileFragment;
-import com.ragdroid.dahaka.activity.home.stats.StatsFragment;
-import com.ragdroid.dahaka.activity.items.ItemsComponent;
+
 import com.ragdroid.dahaka.api.entity.Pokemon;
+import com.ragdroid.dahaka.app.UserManager;
 
 import dagger.BindsInstance;
 import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * Created by garimajain on 13/08/17.
  */
-@Subcomponent(modules = UserModule.class)
-public interface UserComponent {
-
-    HomeComponent.Builder homeComponentBuilder();
-    ItemsComponent.Builder itemsComponentBuilder();
+@UserScope
+@Subcomponent(modules = {UserBindingModule.class, AndroidSupportInjectionModule.class})
+public interface UserComponent extends AndroidInjector<DaggerApplication> {
+    void inject(UserManager userManager);
 
 
     @Subcomponent.Builder
     interface Builder {
 
+        UserComponent build();
         @BindsInstance
         Builder pokeMon(Pokemon pokemon);
-        UserComponent build();
-
     }
 
 }
