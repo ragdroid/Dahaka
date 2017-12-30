@@ -2,8 +2,7 @@ package com.ragdroid.dahaka.api;
 
 import com.ragdroid.dahaka.user.PokemonService;
 
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
 
 import javax.inject.Singleton;
 
@@ -16,16 +15,10 @@ import dagger.Provides;
 @Module
 public class MockApiModule {
 
-    @Mock PokemonService pokemonService;
-
-    public MockApiModule() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Provides
     @Singleton
-    public PokemonService providePokemonService() {
-        return pokemonService;
+    static PokemonService providePokemonService() {
+        return Mockito.mock(PokemonService.class);
     }
 
 

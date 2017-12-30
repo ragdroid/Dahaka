@@ -32,7 +32,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    public HttpLoggingInterceptor getLoggingInterceptor() {
+    public static HttpLoggingInterceptor getLoggingInterceptor() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return loggingInterceptor;
@@ -41,7 +41,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    Gson provideGson() {
+    static Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return gsonBuilder.create();
@@ -49,13 +49,13 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    Cache provideOkhttpCache(Application application) {
+    static Cache provideOkhttpCache(Application application) {
         return new Cache(application.getCacheDir(), CACHE_SIZE);
     }
 
     @Provides
     @Singleton
-    Interceptor provideCacheOverrideInterceptor() {
+    static Interceptor provideCacheOverrideInterceptor() {
         return chain -> {
             int maxStale = 60 * 60 * 24 * 7; // tolerate 1-week stale
             return chain.proceed(chain.request())
@@ -67,7 +67,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(HttpLoggingInterceptor loggingInterceptor, Cache cache,
+    static OkHttpClient provideOkHttpClient(HttpLoggingInterceptor loggingInterceptor, Cache cache,
                                      Interceptor cacheOverrideInterceptor) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .cache(cache)
@@ -84,7 +84,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+    static Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -93,13 +93,13 @@ public class ApiModule {
                 .build();
     }
 
-    protected String getBaseUrl() {
+    protected static String getBaseUrl() {
         return "http://pokeapi.co/api/v2/";
     }
 
     @Provides
     @Singleton
-    public PokemonService providePokemonService(Retrofit retrofit) {
+    public static PokemonService providePokemonService(Retrofit retrofit) {
         return retrofit.create(PokemonService.class);
     }
 
