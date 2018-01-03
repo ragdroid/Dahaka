@@ -3,6 +3,7 @@ package com.ragdroid.dahaka.activity.login;
 import com.ragdroid.dahaka.activity.ActivityScope;
 
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import dagger.Module;
@@ -16,15 +17,10 @@ import static org.mockito.Mockito.doCallRealMethod;
 @Module
 public class TestLoginModule {
 
-    @Mock LoginPresenter loginPresenter;
-
-    public TestLoginModule() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Provides
     @ActivityScope
-    public LoginContract.Presenter provideLoginPresenter() {
+    public static LoginContract.Presenter provideLoginPresenter() {
+        LoginPresenter loginPresenter = Mockito.mock(LoginPresenter.class);
         doCallRealMethod().when(loginPresenter).onSubmitClicked();
         return loginPresenter;
     }

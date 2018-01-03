@@ -15,22 +15,22 @@ import dagger.Provides;
 public class ItemsModule {
 
     @Provides
-    public ItemsContract.Presenter provideHomePresenter(ItemsPresenter presenter) {
+    static ItemsContract.Presenter provideHomePresenter(ItemsPresenter presenter) {
         return presenter;
     }
 
     @Provides
-    public ItemsAdapter provideItemsAdapter() {
+    static ItemsAdapter provideItemsAdapter() {
         return new ItemsAdapter();
     }
 
     @Provides
-    public LinearLayoutManager provideLayoutManager(ItemsActivity activity) {
+    static LinearLayoutManager provideLayoutManager(ItemsActivity activity) {
         return new LinearLayoutManager(activity);
     }
 
     @Provides
-    public DividerItemDecoration provideDividerItemDecoration(ItemsActivity activity) {
+    static DividerItemDecoration provideDividerItemDecoration(ItemsActivity activity) {
         return new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
     }
 

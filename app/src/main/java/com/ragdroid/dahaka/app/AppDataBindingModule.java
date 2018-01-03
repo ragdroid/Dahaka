@@ -17,7 +17,7 @@ import dagger.Provides;
 public class AppDataBindingModule {
     @Provides
     @Singleton
-    public RequestManager provideGlideRequestManager(Application application) {
+    static RequestManager provideGlideRequestManager(Application application) {
         return Glide.with(application);
     }
 }
