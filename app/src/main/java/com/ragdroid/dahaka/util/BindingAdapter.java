@@ -1,6 +1,5 @@
 package com.ragdroid.dahaka.util;
 
-import android.content.Context;
 import android.databinding.BindingConversion;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -46,7 +45,6 @@ public class BindingAdapter {
     public void setImageUrl(ImageView view, String src, Drawable placeholder, Drawable error,
                             int blurValue, boolean cropCircle) {
 
-        Context ctx = view.getContext();
         RequestOptions options = new RequestOptions();
 
         RequestBuilder<Drawable> glideBuilder = requestManager.load(src);
@@ -61,7 +59,7 @@ public class BindingAdapter {
         }
 
         if (blurValue > 0) {
-            options.transform(new BlurTransformation(ctx, blurValue));
+            options.transform(new BlurTransformation(blurValue));
         }
 
         if (cropCircle) {
