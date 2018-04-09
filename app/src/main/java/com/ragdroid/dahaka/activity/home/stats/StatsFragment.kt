@@ -22,9 +22,9 @@ class StatsFragment : BaseFragment<StatsContract.Presenter, StatsContract.View>(
 
     private lateinit var dataBinding: FragmentStatsBinding
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater!!.inflate(R.layout.fragment_stats, container, false)
+        val view = inflater.inflate(R.layout.fragment_stats, container, false)
         dataBinding = DataBindingUtil.bind(view)
         return view
     }

@@ -22,9 +22,8 @@ class MovesFragment : BaseFragment<MovesContract.Presenter, MovesContract.View>(
 
     private lateinit var dataBinding: FragmentMovesBinding
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater!!.inflate(R.layout.fragment_moves, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_moves, container, false)
         dataBinding = DataBindingUtil.bind(view)
         return view
     }

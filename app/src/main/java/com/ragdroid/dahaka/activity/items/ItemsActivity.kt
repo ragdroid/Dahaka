@@ -38,7 +38,7 @@ class ItemsActivity : BaseUserActivity<ItemsContract.Presenter, ItemsContract.Vi
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_items)
         super.onCreate(savedInstanceState)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener { view -> finish() }

@@ -41,7 +41,7 @@ abstract class BaseFragment<T : BasePresenter<V>, V : BaseView> : Fragment() {
     fun finishView() {
         showMessage(getString(R.string.session_expired))
         startActivity(Intent(activity, LoginActivity::class.java))
-        activity.finish()
+        activity?.finish()
     }
 
     protected abstract fun initDagger()

@@ -21,7 +21,7 @@ class LoginActivity : BaseActivity<LoginContract.Presenter, LoginContract.View>(
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         super.onCreate(savedInstanceState)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setTitle(R.string.title_activity_login)
         binding.presenter = presenter
