@@ -1,11 +1,11 @@
 package com.ragdroid.dahaka.app
 
 import android.app.Application
+import com.bumptech.glide.RequestManager
 
 import com.ragdroid.dahaka.DahakaApplication
 import com.ragdroid.dahaka.activity.AppBindingModule
 import com.ragdroid.dahaka.api.ApiModule
-import com.ragdroid.dahaka.user.UserComponent
 import com.ragdroid.dahaka.util.BaseSchedulerProvider
 
 import javax.inject.Singleton
@@ -27,6 +27,10 @@ interface AppComponent : AndroidInjector<DaggerApplication> {
     val userManager: UserManager
 
     fun schedulerProvider(): BaseSchedulerProvider
+
+    val bindingComponent: AppDataBindingComponent
+
+    val requestManager: RequestManager
 
     fun inject(instance: DahakaApplication)
 

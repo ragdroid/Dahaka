@@ -10,7 +10,11 @@ import com.ragdroid.dahaka.activity.home.HomeActivity
 import com.ragdroid.dahaka.databinding.ActivityLoginBinding
 import com.ragdroid.dahaka.mvp.BaseActivity
 
-class LoginActivity : BaseActivity<LoginContract.Presenter>(), LoginContract.View {
+class LoginActivity : BaseActivity<LoginContract.Presenter, LoginContract.View>(), LoginContract.View {
+
+    override fun getView(): LoginContract.View {
+    return this
+    }
 
     private lateinit var binding: ActivityLoginBinding
 
