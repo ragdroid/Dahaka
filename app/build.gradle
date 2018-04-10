@@ -3,7 +3,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.ragdroid.dahaka"
         minSdkVersion 16
@@ -32,10 +32,11 @@ android {
 
 
 }
-final supportVersion = '26.0.1'
+final supportVersion = '26.1.0'
 final retrofitVersion = '2.3.0'
 final espressoVersion = '3.0.0'
-final daggerVersion = '2.11'
+final daggerVersion = '2.15'
+final okhttpVersion = '3.9.1'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -54,9 +55,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:${daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
 
-    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
-    compile 'com.squareup.okhttp3:okhttp:3.8.0'
-    compile 'com.google.code.gson:gson:2.8.1'
+    compile "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
+    compile "com.squareup.okhttp3:okhttp:${okhttpVersion}"
 
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
@@ -64,8 +64,8 @@ dependencies {
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
-    compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'jp.wasabeef:glide-transformations:2.0.2'
+    compile 'com.github.bumptech.glide:glide:4.3.1'
+    compile 'jp.wasabeef:glide-transformations:3.0.1'
 
 
 
@@ -73,11 +73,11 @@ dependencies {
 
     provided 'javax.annotation:jsr250-api:1.0'
 
-    androidTestCompile "com.android.support.test:runner:1.0.0"
-    androidTestCompile "com.android.support.test:rules:1.0.0"
+    androidTestCompile "com.android.support.test:runner:1.0.1"
+    androidTestCompile "com.android.support.test:rules:1.0.1"
     androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoVersion}"
     androidTestCompile "com.android.support.test.espresso:espresso-intents:${espressoVersion}"
-    androidTestCompile 'org.mockito:mockito-android:2.8.47'
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.11"
+    androidTestCompile 'org.mockito:mockito-android:2.13.0'
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
 
 }
