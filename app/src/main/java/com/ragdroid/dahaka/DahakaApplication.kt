@@ -7,7 +7,6 @@ import android.databinding.DataBindingUtil
 
 import com.ragdroid.dahaka.app.AppComponent
 import com.ragdroid.dahaka.app.DaggerAppComponent
-import com.ragdroid.dahaka.app.DaggerAppDataBindingComponent
 
 import javax.inject.Inject
 
@@ -29,13 +28,13 @@ class DahakaApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         app = this
-        DataBindingUtil.setDefaultComponent(buildDataBindingComponent())
         appComponent = DaggerAppComponent.builder().application(this).build()
         appComponent.inject(this)
+        DataBindingUtil.setDefaultComponent(buildDataBindingComponent())
     }
 
     private fun buildDataBindingComponent(): DataBindingComponent {
-        return DaggerAppDataBindingComponent.builder().application(this).build()
+        return appComponent.bindingComponent
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
